@@ -17,8 +17,10 @@ const LoginScreen = () => {
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={LoginSchema}
-        onSubmit={(values) => {
+        onSubmit={(values, { setSubmitting, resetForm }) => {
           console.log(values);
+          setSubmitting(false);
+          resetForm();
         }}
       >
         {({
@@ -73,6 +75,7 @@ const LoginScreen = () => {
             <div className="mt-6">
               <button
                 type="submit"
+                disabled={isSubmitting}
                 className="w-full px-4 py-2 tracking-wide text-[#0d0d0d] font-bold transition-colors duration-200 transform bg-[#ff8e3c] rounded-md hover:bg-[#ff700a] focus:outline-none focus:bg-[#ff700a]"
               >
                 Login
