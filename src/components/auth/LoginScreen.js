@@ -1,6 +1,8 @@
 import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+import { startLogin } from "../../redux/reducers/authReducer";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Formato invalido").required("Requerido"),
@@ -11,6 +13,7 @@ const LoginSchema = Yup.object().shape({
 });
 
 const LoginScreen = () => {
+  const dispatch = useDispatch();
   return (
     <div className="w-full mt-10 max-w-sm p-6 m-auto text-[#0d0d0d] bg-[#fffffe] rounded-md shadow-md">
       <h1 className="text-3xl font-semibold text-center">Iniciar Sesion</h1>
@@ -19,6 +22,7 @@ const LoginScreen = () => {
         validationSchema={LoginSchema}
         onSubmit={(values, { setSubmitting, resetForm }) => {
           console.log(values);
+          dispatch(startLogin(values));
           setSubmitting(false);
           resetForm();
         }}
@@ -31,7 +35,6 @@ const LoginScreen = () => {
           handleBlur,
           handleSubmit,
           isSubmitting,
-          /* and other goodies */
         }) => (
           <form className="mt-6" onSubmit={handleSubmit}>
             <div>
