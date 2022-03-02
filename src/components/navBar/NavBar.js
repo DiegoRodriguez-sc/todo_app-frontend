@@ -26,7 +26,7 @@ const NavBar = () => {
             </Link>
             <Link
               to="/register"
-              className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-[#0d0d0d] bg-[#ff8e3c] hover:bg-[#ff700a]"
+              className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-[#0d0d0d] bg-[#ff8e3c]"
             >
               Registrarse
             </Link>

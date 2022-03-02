@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import todo from "../../assets/todo.svg";
+import Example from "./Example";
 
 const LandingScreen = () => {
   const navigate = useNavigate();
@@ -8,34 +8,35 @@ const LandingScreen = () => {
     navigate("/register");
   };
   return (
-    <section className="text-[#0d0d0d] bg-[#fffffe] body-font mx-auto">
-      <div className="container mx-auto flex px-3 py-24 md:flex-row flex-col items-center">
-        <div className="flex-2 lg:flex-grow md:w-full lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-          <h1 className="title-font sm:text-4xl md:text-5xl lg:text-6xl text-3xl mb-4 font-bold">
-            <span className="inline">Mantente Organizado</span>
-            <span className="block">Mantente Creativo</span>
-          </h1>
-          <p className="mb-8 leading-relaxed md:text-2xl text-lg text-gray-600">
-            Captura tus ideas y haz algo creativo todos los dias
-          </p>
-          <div className="flex justify-center">
-            <button
-              onClick={handleRegister}
-              className="w-full shadow flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md md:py-4 md:text-lg md:px-10 bg-[#ff8e3c] hover:bg-[#ff700a]"
-            >
-              Crear cuenta
-            </button>
-          </div>
+    <>
+    
+    <section class="min-h-screen min-w-screen text-[#0d0d0d] bg-[#fffffe]">
+      
+        <div class="container px-6 py-16 mx-auto text-center">
+            <div class="max-w-lg mx-auto">
+                <h1 class="text-3xl font-bold md:text-4xl lg:text-5xl">
+                  <span className="block">Mantente Organizado</span>
+                  <span className="block">Mantente Creativo</span>
+                </h1>
+                <p class="mt-6 text-gray-800">
+                  Captura tus ideas y haz algo creativo todos los dias
+                </p>
+                <button
+                    onClick={handleRegister}
+                    class="px-6 py-2 mt-6 text-sm font-medium leading-5 text-center text-[#0d0d0d] uppercase bg-[#ff8e3c] rounded-md md:mx-0 md:w-auto focus:outline-none">
+                    Crea tu cuenta!
+                </button>
+            </div>
+    
+            <div class="flex justify-center mt-10">
+                <div class="w-full h-64  rounded-xl md:w-4/5">
+                <Example />
+                </div>
+            </div>
         </div>
-        <div className="lg:max-w-sm lg:w-full md:w-1/3 w-5/6 mx-auto self-center">
-          <img
-            className="object-cover object-center rounded w-full"
-            alt="hero"
-            src={todo}
-          />
-        </div>
-      </div>
     </section>
+    
+    </>
   );
 };
 
