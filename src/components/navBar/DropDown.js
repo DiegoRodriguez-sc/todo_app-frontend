@@ -27,7 +27,7 @@ const Dropdown = () => {
             width={32}
             height={32}
             className="w-8 h-8 rounded-full"
-            src={`https://ui-avatars.com/api/?color=00000&name=${user.name}`}
+            src={`https://ui-avatars.com/api/?color=00000&name=${user.name.split(" ").join("")}`}
             alt=""
           />
           <span className="ml-2 font-semibold">{user.name}</span>

@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+import { startRegister } from "../../redux/reducers/authReducer";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const LoginSchema = Yup.object().shape({
   name: Yup.string().required("Requerido").min(3, "Minimo 3 caracteres"),
@@ -17,6 +21,18 @@ const LoginSchema = Yup.object().shape({
 });
 
 const RegisterScreen = () => {
+  const {status, error} = useSelector( state => state.auth.register );
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
+  useEffect(() => {
+    if(status){
+      navigate("/login");
+    }else{
+      console.log(error);
+    }
+  }, [error, navigate, status]);
+
+
   return (
     <div className="w-full mt-10 max-w-sm p-6 m-auto text-[#0d0d0d] bg-[#fffffe] rounded-md shadow-md">
       <h1 className="text-3xl font-semibold text-center">Crear Cuenta</h1>
@@ -24,7 +40,7 @@ const RegisterScreen = () => {
         initialValues={{ name: "", email: "", password: "", password2:"" }}
         validationSchema={LoginSchema}
         onSubmit={(values, { setSubmitting, resetForm }) => {
-          console.log(values);
+          dispatch(startRegister(values));
           setSubmitting(false);
           resetForm();
         }}
@@ -37,7 +53,6 @@ const RegisterScreen = () => {
           handleBlur,
           handleSubmit,
           isSubmitting,
-          /* and other goodies */
         }) => (
           <form className="mt-6" onSubmit={handleSubmit}>
             <div>
