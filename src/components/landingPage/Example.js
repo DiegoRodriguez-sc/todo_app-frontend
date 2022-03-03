@@ -1,31 +1,90 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/checkbox.css";
 import { IoSchool, IoHome, IoBriefcase } from "react-icons/io5";
+import { motion } from "framer-motion";
+import CheckBox from "../checkbox/CheckBox";
+
+const arrLanding = [
+  {
+    text: "Aprender React.js",
+    id: 1,
+    completed: false,
+    categoria: <IoSchool />,
+  },
+  {
+    text: "Pagar internet :D",
+    id: 2,
+    completed: false,
+    categoria: <IoHome />,
+  },
+  {
+    text: "Debug TODO app",
+    id: 3,
+    completed: false,
+    categoria: <IoBriefcase />,
+  },
+];
 
 const Example = () => {
-  const arrExample = [
-    { text: "Aprender React.js", completed: false, categoria: <IoSchool /> },
-    { text: "Pagar internet :D", completed: true, categoria: <IoHome /> },
-    { text: "Debug TODO app", completed: false, categoria: <IoBriefcase /> },
-  ];
+  const [arrExample, setArrExample] = useState(arrLanding);
+
+  const handleCompleted = (id) => {
+    setArrExample(
+      arrExample.map((exa) => {
+        if (exa.id === id) {
+          exa.completed = !exa.completed;
+        }
+        return exa;
+      })
+    );
+    setTimeout(() => {
+      setArrExample(arrExample.filter((fil) => fil.completed === false));
+    }, 2000);
+
+  };
+
+  useEffect(() => {
+    if (arrExample.length === 0) {
+      arrLanding.forEach(ar => ar.completed = false);
+      setArrExample(arrLanding);
+    }
+  }, [arrExample]);
+
   return (
     <div className="text-[#0d0d0d] bg-[#fffffe]">
       <div className="container px-6 py-8 mx-auto">
         <div className="mt-6 space-y-8 xl:mt-12">
-          {arrExample.map((taskk, index) => (
-            <div key={index} className="flex justify-between items-center overflow-x-auto  max-w-2xl w-full px-4 py-2 mx-auto border cursor-pointer rounded-xl border-gray-200 bg-[#eff0f3]">
-              <div className="flex items-center">
-                <input
-                  type="checkbox"
-                  id={taskk.text}
-                  defaultChecked={taskk.completed}
-                  className="mx-1"
+          {arrExample.map((taskk) => (
+            <div
+              key={taskk.id}
+              className={`flex justify-between items-center overflow-x-auto  max-w-2xl w-full px-4 py-2 mx-auto border rounded-xl border-gray-200 bg-[#eff0f3]`}
+            >
+              <div className="flex items-center justify-center">
+                <CheckBox
+                  checked={taskk.completed}
+                  onChange={() => handleCompleted(taskk.id)}
+                  id={taskk.id}
                 />
-                <label htmlFor={taskk.text} data-content={taskk.text}>
+                <motion.p
+                  animate={{
+                    textDecoration: `${
+                      taskk.completed ? "line-through" : "none"
+                    }`,
+                  }}
+                  transition={{ delay: 1, duration: 1 }}
+                  className="ml-2 font-semibold"
+                >
                   {taskk.text}
-                </label>
+                </motion.p>
               </div>
-              <div>{taskk.categoria}</div>
+              <motion.div
+                whileHover={{
+                  color: "#FF8E3C",
+                  textShadow: "0 0 8px rgba(255, 142, 50, .7)",
+                }}
+              >
+                {taskk.categoria}
+              </motion.div>
             </div>
           ))}
         </div>

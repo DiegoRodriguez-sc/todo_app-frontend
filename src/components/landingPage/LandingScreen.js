@@ -14,8 +14,8 @@ const LandingScreen = () => {
       
         <div className="container px-6 py-16 mx-auto text-center">
             <div className="max-w-lg mx-auto">
-                <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
-                  <span className="block">Mantente Organizado</span>
+                <h1 className="text-3xl min-w-full mx-auto  font-extrabold md:text-4xl lg:text-5xl">
+                  <span className="block whitespace-nowrap">Mantente Organizado</span>
                   <span className="block">Mantente Creativo</span>
                 </h1>
                 <p className="mt-6 text-gray-800">
