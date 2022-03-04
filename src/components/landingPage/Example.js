@@ -60,7 +60,7 @@ const Example = () => {
     fin:{
       opacity:1,
       transition:{
-        duration:2, delay:1
+        duration:.5, delay:1
       }
     },
     exit:{

@@ -5,9 +5,9 @@ import { useDispatch } from "react-redux";
 import { startLogin } from "../../redux/reducers/authReducer";
 
 const LoginSchema = Yup.object().shape({
-  email: Yup.string().email("Formato invalido").required("Requerido"),
+  email: Yup.string().email("Formato inválido").required("Requerido"),
   password: Yup.string()
-    .min(5, "Minimo 6 caracteres!")
+    .min(6, "Minimo 6 caracteres!")
     .max(50, "Muy largo!")
     .required("Requerido"),
 });
@@ -15,8 +15,8 @@ const LoginSchema = Yup.object().shape({
 const LoginScreen = () => {
   const dispatch = useDispatch();
   return (
-    <div className="w-full mt-10 max-w-sm p-6 m-auto text-[#0d0d0d] bg-[#fffffe] rounded-md shadow-md">
-      <h1 className="text-3xl font-semibold text-center">Iniciar Sesion</h1>
+    <div className="w-full mt-10 max-w-sm p-6 m-auto text-[#0d0d0d] bg-[#fffffe] rounded-md">
+      <h1 className="text-3xl font-semibold text-center">Iniciar Sesión</h1>
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={LoginSchema}
@@ -39,12 +39,13 @@ const LoginScreen = () => {
           <form className="mt-6" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="username" className="block text-lg text-[#0d0d0d] ">
-                Correo electronico
+                Correo electrónico
               </label>
               <input
                 type="email"
                 name="email"
                 autoComplete="off"
+                placeholder="example@gmail.com"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.email}
@@ -58,13 +59,14 @@ const LoginScreen = () => {
             <div className="mt-4">
               <div className="flex items-center justify-between">
                 <label  htmlFor="password" className="block text-lg text-[#0d0d0d]">
-                  Password
+                  Contraseña
                 </label>
               </div>
 
               <input
                 type="password"
                 name="password"
+                placeholder="min 6 caracteres"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.password}
