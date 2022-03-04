@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { Formik } from "formik";
-import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { startRegister } from "../../redux/reducers/authReducer";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
+import { startRegister } from "../../redux/reducers/authReducer";
 import AnimatePage from "../animatedPage/AnimatePage";
 
 const LoginSchema = Yup.object().shape({
@@ -22,16 +22,22 @@ const LoginSchema = Yup.object().shape({
 });
 
 const RegisterScreen = () => {
-  const { status, error } = useSelector((state) => state.auth.register);
+  const { loading, register } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   let navigate = useNavigate();
+
+
+
   useEffect(() => {
-    if (status) {
+    if (loading === false && register.status) {
       navigate("/login");
-    } else {
-      console.log(error);
     }
-  }, [error, navigate, status]);
+    if (loading === false && register.error) {
+
+      console.log("error")
+      alert(register.error)
+    }
+  }, [loading, navigate, register]);
 
   return (
     <AnimatePage>
@@ -40,10 +46,9 @@ const RegisterScreen = () => {
         <Formik
           initialValues={{ name: "", email: "", password: "", password2: "" }}
           validationSchema={LoginSchema}
-          onSubmit={(values, { setSubmitting, resetForm }) => {
+          onSubmit={(values, { resetForm }) => {
             dispatch(startRegister(values));
-            setSubmitting(false);
-            resetForm();
+            register.status && resetForm();
           }}
         >
           {({
@@ -145,7 +150,7 @@ const RegisterScreen = () => {
               <div className="mt-6">
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={loading}
                   className="w-full px-4 py-2 tracking-wide text-[#0d0d0d] font-bold transition-colors duration-200 transform bg-[#ff8e3c] rounded-md hover:bg-[#ff700a] focus:outline-none focus:bg-[#ff700a]"
                 >
                   Registrarse
