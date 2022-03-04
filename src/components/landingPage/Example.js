@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/checkbox.css";
 import { IoSchool, IoHome, IoBriefcase } from "react-icons/io5";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import CheckBox from "../checkbox/CheckBox";
 
 const arrLanding = [
@@ -46,16 +46,43 @@ const Example = () => {
   useEffect(() => {
     if (arrExample.length === 0) {
       arrLanding.forEach(ar => ar.completed = false);
-      setArrExample(arrLanding);
+      setTimeout(() => {
+        setArrExample(arrLanding);
+      }, 1000);
     }
   }, [arrExample]);
+
+  // animate example init
+  const initExample = {
+    init:{
+      opacity:0
+    },
+    fin:{
+      opacity:1,
+      transition:{
+        duration:2, delay:1
+      }
+    },
+    exit:{
+      opacity:0,
+      y:-80,
+      transition:{
+        duration:.4
+      }    
+    }
+  }
 
   return (
     <div className="text-[#0d0d0d] bg-[#fffffe]">
       <div className="container px-6 py-8 mx-auto">
         <div className="mt-6 space-y-8 xl:mt-12">
+         <AnimatePresence>
           {arrExample.map((taskk) => (
-            <div
+            <motion.div
+              variants={initExample}
+              initial="init"
+              animate="fin"
+              exit="exit"
               key={taskk.id}
               className={`flex justify-between items-center overflow-x-auto  max-w-2xl w-full px-4 py-2 mx-auto border rounded-xl border-gray-200 bg-[#eff0f3]`}
             >
@@ -85,8 +112,9 @@ const Example = () => {
               >
                 {taskk.categoria}
               </motion.div>
-            </div>
+            </motion.div>
           ))}
+        </AnimatePresence>
         </div>
       </div>
     </div>
