@@ -8,13 +8,13 @@ import { useNavigate } from "react-router-dom";
 
 const LoginSchema = Yup.object().shape({
   name: Yup.string().required("Requerido").min(3, "Minimo 3 caracteres"),
-  email: Yup.string().email("Formato invalido").required("Requerido"),
+  email: Yup.string().email("Formato inválido").required("Requerido"),
   password: Yup.string()
-    .min(5, "Minimo 6 caracteres!")
+    .min(6, "Minimo 6 caracteres!")
     .max(50, "Muy largo!")
     .required("Requerido"),
   password2: Yup.string()
-    .min(5, "Minimo 6 caracteres!")
+    .min(6, "Minimo 6 caracteres!")
     .max(50, "Muy largo!")
     .required("Requerido")
     .oneOf([Yup.ref("password"), null], "Las contraseñas no coinciden."),
@@ -34,7 +34,7 @@ const RegisterScreen = () => {
 
 
   return (
-    <div className="w-full mt-10 max-w-sm p-6 m-auto text-[#0d0d0d] bg-[#fffffe] rounded-md shadow-md">
+    <div className="w-full mt-10 max-w-sm p-6 m-auto text-[#0d0d0d] bg-[#fffffe] rounded-md">
       <h1 className="text-3xl font-semibold text-center">Crear Cuenta</h1>
       <Formik
         initialValues={{ name: "", email: "", password: "", password2:"" }}
@@ -62,6 +62,7 @@ const RegisterScreen = () => {
               <input
                 type="text"
                 name="name"
+                placeholder="min 3 caracteres"
                 autoComplete="off"
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -72,14 +73,15 @@ const RegisterScreen = () => {
                 {errors.name && touched.name && errors.name}
               </span>
             </div>
-            <div>
+            <div className="mt-4">
               <label htmlFor="email" className="block text-lg text-[#0d0d0d] ">
-                Correo electronico
+                Correo electrónico
               </label>
               <input
                 type="email"
                 name="email"
                 autoComplete="off"
+                placeholder="example@gmail.com"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.email}
@@ -96,13 +98,14 @@ const RegisterScreen = () => {
                   htmlFor="password"
                   className="block text-lg text-[#0d0d0d]"
                 >
-                  Password
+                  Contraseña
                 </label>
               </div>
 
               <input
                 type="password"
                 name="password"
+                placeholder="min 6 caracteres"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.password}
@@ -118,7 +121,7 @@ const RegisterScreen = () => {
                   htmlFor="password2"
                   className="block text-lg text-[#0d0d0d]"
                 >
-                  Confirm Password
+                  Confirmar contraseña
                 </label>
               </div>
 
