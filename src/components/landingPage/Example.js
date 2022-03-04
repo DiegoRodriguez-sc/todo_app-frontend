@@ -40,12 +40,11 @@ const Example = () => {
     setTimeout(() => {
       setArrExample(arrExample.filter((fil) => fil.completed === false));
     }, 2000);
-
   };
 
   useEffect(() => {
     if (arrExample.length === 0) {
-      arrLanding.forEach(ar => ar.completed = false);
+      arrLanding.forEach((ar) => (ar.completed = false));
       setTimeout(() => {
         setArrExample(arrLanding);
       }, 1000);
@@ -54,67 +53,66 @@ const Example = () => {
 
   // animate example init
   const initExample = {
-    init:{
-      opacity:0
+    init: {
+      opacity: 0,
     },
-    fin:{
-      opacity:1,
-      transition:{
-        duration:.5, delay:1
-      }
+    fin: {
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        delay: 1,
+      },
     },
-    exit:{
-      opacity:0,
-      y:-80,
-      transition:{
-        duration:.4
-      }    
-    }
-  }
+    exit: {
+      opacity: 0,
+      y: -80,
+      transition: {
+        duration: 0.4,
+      },
+    },
+  };
 
   return (
     <div className="text-[#0d0d0d] bg-[#fffffe]">
       <div className="container px-6 py-8 mx-auto">
         <div className="mt-6 space-y-8 xl:mt-12">
-         <AnimatePresence>
-          {arrExample.map((taskk) => (
-            <motion.div
-              variants={initExample}
-              initial="init"
-              animate="fin"
-              exit="exit"
-              key={taskk.id}
-              className={`flex justify-between items-center overflow-x-auto  max-w-2xl w-full px-4 py-2 mx-auto border rounded-xl border-gray-200 bg-[#eff0f3]`}
-            >
-              <div className="flex items-center justify-center">
-                <CheckBox
-                  checked={taskk.completed}
-                  onChange={() => handleCompleted(taskk.id)}
-                  id={taskk.id}
-                />
-                <motion.p
-                  animate={{
-                    textDecoration: `${
-                      taskk.completed ? "line-through" : "none"
-                    }`,
-                  }}
-                  transition={{ delay: 1, duration: 1 }}
-                  className="ml-2 font-semibold"
-                >
-                  {taskk.text}
-                </motion.p>
-              </div>
+          <AnimatePresence>
+            {arrExample.map((taskk) => (
               <motion.div
-                whileHover={{
-                  color: "#FF8E3C",
-                  textShadow: "0 0 8px rgba(255, 142, 50, .7)",
-                }}
+                variants={initExample}
+                initial="init"
+                animate="fin"
+                exit="exit"
+                key={taskk.id}
+                className={`flex justify-between items-center overflow-x-auto  max-w-2xl w-full px-4 py-2 mx-auto border rounded-xl border-gray-200 bg-[#eff0f3]`}
               >
-                {taskk.categoria}
+                <div className="flex items-center justify-center">
+                  <CheckBox
+                    checked={taskk.completed}
+                    onChange={() => handleCompleted(taskk.id)}
+                    id={taskk.id}
+                  />
+                  <motion.p
+                    style={
+                      taskk.completed && {
+                        textDecoration: "line-through",
+                      }
+                    }
+                    className="ml-2 font-semibold"
+                  >
+                    {taskk.text}
+                  </motion.p>
+                </div>
+                <motion.div
+                  whileHover={{
+                    color: "#FF8E3C",
+                  }}
+                >
+                  {taskk.categoria}
+                </motion.div>
               </motion.div>
-            </motion.div>
-          ))}
-        </AnimatePresence>
+            ))}
+          </AnimatePresence>
         </div>
       </div>
     </div>

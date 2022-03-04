@@ -19,7 +19,7 @@ const LandingScreen = () => {
                   <span className="block">Mantente Creativo</span>
                 </h1>
                 <p className="mt-6 text-gray-800">
-                  Captura tus ideas y haz algo creativo todos los dias
+                  Captura tus ideas y haz algo creativo todos los días
                 </p>
                 <button
                     onClick={handleRegister}
