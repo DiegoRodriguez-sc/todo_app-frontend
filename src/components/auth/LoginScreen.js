@@ -1,9 +1,10 @@
 import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { startLogin } from "../../redux/reducers/authReducer";
 import AnimatePage from "../animatedPage/AnimatePage";
+import Loader from "../loader/Loader";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Formato inválido").required("Requerido"),
@@ -14,6 +15,7 @@ const LoginSchema = Yup.object().shape({
 });
 
 const LoginScreen = () => {
+  const {loading} = useSelector( state => state.auth );
   const dispatch = useDispatch();
   return (
     <AnimatePage>
@@ -23,7 +25,6 @@ const LoginScreen = () => {
           initialValues={{ email: "", password: "" }}
           validationSchema={LoginSchema}
           onSubmit={(values, { setSubmitting, resetForm }) => {
-            console.log(values);
             dispatch(startLogin(values));
             setSubmitting(false);
             resetForm();
@@ -88,10 +89,14 @@ const LoginScreen = () => {
               <div className="mt-6">
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={loading}
                   className="w-full px-4 py-2 tracking-wide text-[#0d0d0d] font-bold transition-colors duration-200 transform bg-[#ff8e3c] rounded-md focus:outline-none"
-                >
-                  Login
+                > 
+                {loading ? (
+                    <Loader text={"Encontrando usuario"} />
+                  ) : (
+                    "Login"
+                  )}
                 </button>
               </div>
             </form>

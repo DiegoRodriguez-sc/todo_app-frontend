@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { startRegister } from "../../redux/reducers/authReducer";
 import AnimatePage from "../animatedPage/AnimatePage";
+import Loader from "../loader/Loader";
 
 const LoginSchema = Yup.object().shape({
   name: Yup.string().required("Requerido").min(3, "Minimo 3 caracteres"),
@@ -26,16 +27,12 @@ const RegisterScreen = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
-
-
   useEffect(() => {
     if (loading === false && register.status) {
       navigate("/login");
     }
     if (loading === false && register.error) {
-
-      console.log("error")
-      alert(register.error)
+      console.log("entre wacho");
     }
   }, [loading, navigate, register]);
 
@@ -153,7 +150,11 @@ const RegisterScreen = () => {
                   disabled={loading}
                   className="w-full px-4 py-2 tracking-wide text-[#0d0d0d] font-bold transition-colors duration-200 transform bg-[#ff8e3c] rounded-md hover:bg-[#ff700a] focus:outline-none focus:bg-[#ff700a]"
                 >
-                  Registrarse
+                  {loading ? (
+                    <Loader text={"Generando usuario"} />
+                  ) : (
+                    "Registrase"
+                  )}
                 </button>
               </div>
             </form>

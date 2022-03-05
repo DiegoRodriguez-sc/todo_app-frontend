@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import Swal from "sweetalert2";
 import { serviceLogin, serviceRegister } from "../../services/auth.service";
 
 export const startLogin = createAsyncThunk("auth/startLogin", async (body) => {
@@ -13,6 +14,14 @@ export const startRegister = createAsyncThunk(
     return resp;
   }
 );
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: "bottom-left",
+  showConfirmButton: false,
+  timer: "5000",
+  timerProgressBar: true,
+});
 
 const authSlice = createSlice({
   name: "auth",
@@ -37,10 +46,26 @@ const authSlice = createSlice({
       if (action.payload.error) {
         state.error = action.payload.error.msg;
         state.logged = false;
+        Toast.fire({
+          icon: "error",
+          iconColor: "white",
+          color: "white",
+          background: "#F33950",
+          title: "Error al logear usuario",
+          text:action.payload.error.msg
+        });
       } else {
         state.token = action.payload.resp.data.token;
         state.user = action.payload.resp.data.user;
         state.logged = true;
+        state.error = null;
+        Toast.fire({
+          icon: "success",
+          iconColor: "white",
+          color: "white",
+          background: "#75D00F",
+          title: "Usuario Logeado",
+        });
       }
       state.loading = false;
     },
@@ -58,10 +83,26 @@ const authSlice = createSlice({
         state.register.error = action.payload.error.msg;
         state.register.status = false;
         state.logged = false;
+        Toast.fire({
+          icon: "error",
+          iconColor: "white",
+          color: "white",
+          background: "#F33950",
+          title: "Error al crear cuenta",
+          text:"Email en uso"
+        });
       } else {
         state.register.error = null;
         state.register.status = true;
         state.logged = false;
+        Toast.fire({
+          icon: "success",
+          iconColor: "white",
+          color: "white",
+          background: "#75D00F",
+          title: "Usuario Registrado",
+          text:"Prueba logearte con tu nueva cuenta!"
+        });
       }
       state.loading = false;
     },
