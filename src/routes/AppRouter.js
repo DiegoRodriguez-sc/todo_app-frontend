@@ -8,6 +8,7 @@ import RegisterScreen from "../components/auth/RegisterScreen";
 import Dashboard from "../components/dashboard/Dashboard";
 import ProtectPrivate from "./ProtectPrivate";
 import ConfigUser from "../components/configUser/ConfigUser";
+import ProtectAuth from "./ProtectAuth";
 
 const AppRouter = () => {
   const location = useLocation();
@@ -18,8 +19,8 @@ const AppRouter = () => {
         <Routes key={location.pathname} location={location}>
           {/* public */}
           <Route path="/" element={<LandingScreen />} />
-          <Route path="/login" element={<LoginScreen />} />
-          <Route path="/register" element={<RegisterScreen />} />
+          <Route path="/login" element={<ProtectAuth> <LoginScreen /> </ProtectAuth> } />
+          <Route path="/register" element={<ProtectAuth> <RegisterScreen /> </ProtectAuth>} />
           {/* private */}
           <Route path="/dashboard" element={ <ProtectPrivate> <Dashboard /> </ProtectPrivate>} />
           <Route path="/dashboard/:id" element={ <ProtectPrivate> <ConfigUser /> </ProtectPrivate>} />
