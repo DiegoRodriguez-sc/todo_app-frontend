@@ -1,8 +1,10 @@
 import React from 'react';
 import { Fragment } from 'react'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {useNavigate} from "react-router-dom";
 import { Menu, Transition } from '@headlessui/react'
 import { IoLogOut, IoSettings } from "react-icons/io5";
+import { setLogout } from '../../redux/reducers/authReducer';
 
 const chevronIcon = (
  <svg
@@ -17,7 +19,18 @@ const chevronIcon = (
  </svg>
 )
 const Dropdown = () => {
- const {user} = useSelector( state => state.auth );
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const {user} = useSelector( state => state.auth );
+
+  const handdleLogout = () => {
+      dispatch(setLogout());
+  }
+
+  const handleConfig = () => {
+      navigate(`/dashboard/${user.uid}`);
+  }
+
  return (
   <Menu as="div" className="relative ml-3">
       <div>
@@ -47,24 +60,26 @@ const Dropdown = () => {
           <Menu.Item>
             {({ active }) => (
               <button
+                onClick={handleConfig}
                 className={`${
-                  active ? 'bg-yellow-400' : ''
+                  active ? 'bg-[#ff8e3c]' : ''
                 } group flex gap-1 rounded-md items-center w-full px-4 py-2 text-sm text-gray-900 font-semibold`}
               >
-                <IoLogOut />
-                Logout
+                <IoSettings />
+                Configuración
               </button>
             )}
           </Menu.Item>
           <Menu.Item>
             {({ active }) => (
               <button
+                onClick={handdleLogout}
                 className={`${
-                  active ? 'bg-yellow-400' : ''
+                  active ? 'bg-[#ff8e3c]' : ''
                 } group flex gap-1 rounded-md items-center w-full px-4 py-2 text-sm text-gray-900 font-semibold`}
               >
-                <IoSettings />
-                Configuración
+                <IoLogOut />
+                Logout
               </button>
             )}
           </Menu.Item>
