@@ -5,6 +5,9 @@ import NavBar from "../components/navBar/NavBar";
 import LandingScreen from "../components/landingPage/LandingScreen";
 import LoginScreen from "../components/auth/LoginScreen";
 import RegisterScreen from "../components/auth/RegisterScreen";
+import Dashboard from "../components/dashboard/Dashboard";
+import ProtectPrivate from "./ProtectPrivate";
+import ConfigUser from "../components/configUser/ConfigUser";
 
 const AppRouter = () => {
   const location = useLocation();
@@ -13,9 +16,13 @@ const AppRouter = () => {
       <NavBar />
       <AnimatePresence exitBeforeEnter>
         <Routes key={location.pathname} location={location}>
-        <Route path="/" element={<LandingScreen />} />
-        <Route path="/login" element={<LoginScreen />} />
-        <Route path="/register" element={<RegisterScreen />} />
+          {/* public */}
+          <Route path="/" element={<LandingScreen />} />
+          <Route path="/login" element={<LoginScreen />} />
+          <Route path="/register" element={<RegisterScreen />} />
+          {/* private */}
+          <Route path="/dashboard" element={ <ProtectPrivate> <Dashboard /> </ProtectPrivate>} />
+          <Route path="/dashboard/:id" element={ <ProtectPrivate> <ConfigUser /> </ProtectPrivate>} />
         </Routes>
       </AnimatePresence>
     </div>
