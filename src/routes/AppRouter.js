@@ -9,12 +9,13 @@ import Dashboard from "../components/dashboard/Dashboard";
 import ProtectPrivate from "./ProtectPrivate";
 import ConfigUser from "../components/configUser/ConfigUser";
 import ProtectAuth from "./ProtectAuth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { startRevalidation } from "../redux/reducers/authReducer";
 
 const AppRouter = () => {
   const location = useLocation();
   const dispatch = useDispatch();
+  const {loading} = useSelector( state => state.auth );
 
   useEffect(() => {
     
@@ -22,6 +23,10 @@ const AppRouter = () => {
 
     
   }, [dispatch]);
+
+  if(loading){
+    return <div>cargando....</div>
+  }
 
   return (
     <div className="min-h-screen">
