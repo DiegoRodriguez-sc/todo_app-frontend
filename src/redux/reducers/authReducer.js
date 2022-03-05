@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Swal from "sweetalert2";
-import { serviceLogin, serviceRegister } from "../../services/auth.service";
+import { serviceLogin, serviceRegister, serviceRevalidation } from "../../services/auth.service";
 
 export const startLogin = createAsyncThunk("auth/startLogin", async (body) => {
   const resp = await serviceLogin(body);
+  localStorage.setItem("token", resp.resp.data.token);
   return resp;
 });
 
@@ -11,6 +12,15 @@ export const startRegister = createAsyncThunk(
   "auth/startRegister",
   async (body) => {
     const resp = await serviceRegister(body);
+    return resp;
+  }
+);
+
+export const startRevalidation = createAsyncThunk(
+  "auth/startRevalidation",
+  async () => {
+    const resp = await serviceRevalidation();
+    localStorage.setItem("token", resp.resp.data.token);
     return resp;
   }
 );
@@ -108,6 +118,34 @@ const authSlice = createSlice({
     },
     [startRegister.rejected]: (state, action) => {
       state.error = "error al Registrarse trata de recargar la página ";
+      state.logged = false;
+      state.loading = false;
+    },
+     //Revalidation---------------------------------------
+     [startRevalidation.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [startRevalidation.fulfilled]: (state, action) => {
+      if (action.payload.error) {
+        console.log(action.payload);
+        state.logged = false;
+      } else {
+        state.token = action.payload.resp.data.token;
+        state.user = action.payload.resp.data.user;
+        state.logged = true;
+        state.error = null;
+        Toast.fire({
+          icon: "success",
+          iconColor: "white",
+          color: "white",
+          background: "#75D00F",
+          title: "Usuario Logeado",
+        });
+      }
+      state.loading = false;
+    },
+    [startRevalidation.rejected]: (state, action) => {
+      state.error = "error al iniciar sesión trata de recargar la página";
       state.logged = false;
       state.loading = false;
     },
