@@ -19,12 +19,14 @@ const AppRouter = () => {
   const {loading, user} = useSelector( state => state.auth );
 
   useEffect(() => {
-    
     dispatch(startRevalidation());
-    dispatch(getTodoUserThunk(user.uid));
-
-    
-  }, [dispatch, user.uid]);
+  }, [dispatch]);
+  
+  useEffect(() => {
+    if(user.uid){
+      dispatch(getTodoUserThunk(user.uid));
+    }
+  }, [dispatch,user]);
 
   if(loading){
     return <div>cargando....</div>
