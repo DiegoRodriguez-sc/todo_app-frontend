@@ -5,7 +5,6 @@ export const getTodoUserThunk = createAsyncThunk(
   "todo/getTodoUserThunk",
   async (id) => {
     const resp = await getTodoByUser(id);
-    console.log(resp);
     return resp;
   }
 );
