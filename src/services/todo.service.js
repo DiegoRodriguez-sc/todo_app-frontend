@@ -1,12 +1,11 @@
 import { fetchPrivate } from "./fetchPrivate.service";
-import { fetchPublic } from "./fetchPublic.service";
 
 const endpoint = process.env.REACT_APP_ENDPOINT_TODO || "/todo";
 
 const datos = { resp: null, error: null };
 
 export const getTodoByUser = async (id) => {
-  const resp = await fetchPublic(`${endpoint}/user`, null, "GET", id);
+  const resp = await fetchPrivate(`${endpoint}/user`, null, "GET", id);
   if (resp.ok) {
     const ok = await resp.json();
     datos.resp = ok;

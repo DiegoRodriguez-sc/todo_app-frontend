@@ -11,18 +11,20 @@ import ConfigUser from "../components/configUser/ConfigUser";
 import ProtectAuth from "./ProtectAuth";
 import { useDispatch, useSelector } from "react-redux";
 import { startRevalidation } from "../redux/reducers/authReducer";
+import { getTodoUserThunk } from "../redux/reducers/todoReducer";
 
 const AppRouter = () => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const {loading} = useSelector( state => state.auth );
+  const {loading, user} = useSelector( state => state.auth );
 
   useEffect(() => {
     
     dispatch(startRevalidation());
+    dispatch(getTodoUserThunk(user.uid));
 
     
-  }, [dispatch]);
+  }, [dispatch, user.uid]);
 
   if(loading){
     return <div>cargando....</div>
