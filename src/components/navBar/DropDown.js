@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import {useNavigate} from "react-router-dom";
 import { Menu, Transition } from '@headlessui/react'
-import { IoLogOut, IoSettings } from "react-icons/io5";
+import { IoLogOut, IoSettings, IoList } from "react-icons/io5";
 import { setLogout } from '../../redux/reducers/authReducer';
 
 const chevronIcon = (
@@ -31,6 +31,10 @@ const Dropdown = () => {
       navigate(`/dashboard/${user.uid}`);
   }
 
+  const handleTodo = () => {
+      navigate("/dashboard");
+  }
+
  return (
   <Menu as="div" className="relative ml-3">
       <div>
@@ -43,7 +47,7 @@ const Dropdown = () => {
             src={`https://ui-avatars.com/api/?color=00000&name=${user.name.split(" ").join("")}`}
             alt=""
           />
-          <span className="ml-2 font-semibold">{user.name}</span>
+          <span className="ml-2 font-semibold hidden md:block">{user.name}</span>
           {chevronIcon}
         </Menu.Button>
       </div>
@@ -57,6 +61,19 @@ const Dropdown = () => {
         leaveTo="opacity-0 scale-95"
       >
         <Menu.Items className="absolute right-0 z-10 block mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg w-36 ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <Menu.Item>
+            {({ active }) => (
+              <button
+                onClick={handleTodo}
+                className={`${
+                  active ? 'bg-[#ff8e3c]' : ''
+                } group flex gap-1 rounded-md items-center w-full px-4 py-2 text-sm text-gray-900 font-semibold`}
+              >
+                <IoList />
+                todo list
+              </button>
+            )}
+          </Menu.Item>
           <Menu.Item>
             {({ active }) => (
               <button

@@ -39,7 +39,7 @@ const authSlice = createSlice({
     user: [],
     token: null,
     logged: false,
-    loading: false,
+    loading: true,
     register: {
       status: false,
       error: null,
