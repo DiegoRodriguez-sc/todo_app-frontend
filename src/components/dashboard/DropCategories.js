@@ -39,11 +39,8 @@ const DropCategories = ({setCate}) => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
-
-  useEffect(() => {
-   
+  useEffect(() => { 
    setCate(categoria);
-   
   }, [setCate, categoria]);
 
   

@@ -2,20 +2,20 @@ import React, { useEffect, useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import DropCategories from "./DropCategories";
+import { useDispatch } from "react-redux";
+import { postTodoThunk } from "../../redux/reducers/todoReducer";
 
 const todoSchema = Yup.object().shape({
   todo: Yup.string().required("Ecribe tus tareas por hacer!"),
 });
 
 const Input = () => {
+   const dispatch = useDispatch();
    const [cate, setCate] = useState({});
    const [errorCate, setErrorCate] = useState(false);
 
    useEffect(() => {
-     
-      if(cate.nombre === "Default"){
-        setErrorCate(true);
-      }else{
+      if(cate.name !== "Default"){
         setErrorCate(false);
       }
      
@@ -26,9 +26,11 @@ const Input = () => {
       initialValues={{ todo: ""}}
       validationSchema={todoSchema}
       onSubmit={(values, { resetForm }) => {
-        if(!errorCate){
+        if(cate.name === "Default"){
+          setErrorCate(true);
+        }else{
           const newValues = {...values, category:cate.name}
-          console.log(newValues);
+          dispatch(postTodoThunk(newValues));
           resetForm();
         }
       }}
@@ -48,11 +50,12 @@ const Input = () => {
               name="todo"
               autoComplete="off"
               onChange={handleChange}
+              placeholder={`para crear una tarea presione ⤶`}
               onBlur={handleBlur}
               value={values.todo}
               className="flex-2 w-full text-lg px-4  mt-1 text-[#0d0d0d] bg-[#eff0f3]  focus:border-none focus:outline-none"
             />
-            <DropCategories setCate={setCate}/>
+            <DropCategories setCate={setCate} />
           </div>
           <p className="text-red-600 flex justify-between items-center max-w-2xl w-full px-4 py-2 mx-auto md:text-sm">
             <span>{errors.todo && touched.todo && errors.todo}</span>

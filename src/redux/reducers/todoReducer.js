@@ -17,7 +17,8 @@ export const getTodoUserThunk = createAsyncThunk(
 export const postTodoThunk = createAsyncThunk(
   "todo/postTodoThunk",
   async (body) => {
-    const resp = await postTodo(body);
+    const {todo, category} = body;
+    const resp = await postTodo({bodyTodo:todo, category});
     return resp;
   }
 );

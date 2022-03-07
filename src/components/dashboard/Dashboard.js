@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import {AnimatePresence, motion} from "framer-motion";
 import { IoTrash } from "react-icons/io5";
@@ -31,33 +31,19 @@ import { arrCat } from '../../helper/categories';
 const Dashboard = () => {
   const {todos, loading} = useSelector( state => state.todo );
 
-  const handleCompleted = (id) => {
-     //editar completado
-  };
-
-
   const searchLogo = (name) => {
-      let logo = "";
+    let logo = "";
       arrCat.forEach(c => {
         if(c.name === name){
           logo = c.categoria;
         }
       });
       return logo;
-  }
-  //   setTimeout(() => {
-  //     setArrExample(arrExample.filter((fil) => fil.completed === false));
-  //   }, 2000);
-  // };
-
-  // useEffect(() => {
-  //   if (arrExample.length === 0) {
-  //     arrLanding.forEach((ar) => (ar.completed = false));
-  //     setTimeout(() => {
-  //       setArrExample(arrLanding);
-  //     }, 1000);
-  //   }
-  // }, [arrExample]);
+    }
+    
+  const handleCompleted = (id) => {
+       //editar completado
+  };
  return (
   <div className='container px-1 py-16 mx-auto text-center'>
    <HeaderDate />
