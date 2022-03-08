@@ -17,15 +17,16 @@ export const getTodoUserThunk = createAsyncThunk(
 export const postTodoThunk = createAsyncThunk(
   "todo/postTodoThunk",
   async (body) => {
-    const {todo, category} = body;
-    const resp = await postTodo({bodyTodo:todo, category});
+    const { todo, category } = body;
+    const resp = await postTodo({ bodyTodo: todo, category });
     return resp;
   }
 );
 export const putTodoThunk = createAsyncThunk(
   "todo/putTodoThunk",
   async (body) => {
-    const resp = await putTodo(body);
+    const { status, id } = body;
+    const resp = await putTodo({status}, id);
     return resp;
   }
 );
@@ -78,6 +79,27 @@ const todoSlice = createSlice({
     },
     [postTodoThunk.rejected]: (state, action) => {
       state.error = "error al crear todo";
+      state.loading = false;
+    },
+    //put todo-----------------------------------------
+    [putTodoThunk.pending]: (state) => {
+      state.loading = true;
+    },
+    [putTodoThunk.fulfilled]: (state, action) => {
+      if (action.payload.error) {
+        state.error = action.payload.error.msg;
+      } else {
+        state.todos = state.todos.map((td) =>
+          td.uid === action.payload.resp.todo.uid
+            ? action.payload.resp.todo
+            : td
+        );
+        state.error = null;
+      }
+      state.loading = false;
+    },
+    [putTodoThunk.rejected]: (state) => {
+      state.error = "error al actualizar el todo";
       state.loading = false;
     },
   },

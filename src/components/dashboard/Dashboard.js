@@ -1,11 +1,12 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {AnimatePresence, motion} from "framer-motion";
 import { IoTrash } from "react-icons/io5";
 import CheckBox from '../checkbox/CheckBox';
 import HeaderDate from './HeaderDate';
 import Input from './Input';
 import { arrCat } from '../../helper/categories';
+import { putTodoThunk } from '../../redux/reducers/todoReducer';
 
    // animate example init
    const initExample = {
@@ -29,6 +30,7 @@ import { arrCat } from '../../helper/categories';
     };
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
   const {todos, loading} = useSelector( state => state.todo );
 
   const searchLogo = (name) => {
@@ -42,7 +44,7 @@ const Dashboard = () => {
     }
     
   const handleCompleted = (id) => {
-       //editar completado
+    dispatch(putTodoThunk({status:true, id}));
   };
  return (
   <div className='container px-1 py-16 mx-auto text-center'>
