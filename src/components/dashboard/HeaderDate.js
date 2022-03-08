@@ -55,7 +55,9 @@ const HeaderDate = () => {
       <h3 className=" my-1 text-1xl font-bold md:text-2xl lg:text-3xl uppercase ">
         {`Hoy es ${day} ${date} de ${month}`}
       </h3>
-      <p className="font-medium">Tienes 0 tareas pendientes</p>
+      <p className="font-medium">
+        Tienes <span>{"0"}</span> tareas pendientes
+      </p>
     </div>
   );
 };

@@ -42,10 +42,25 @@ const todoSlice = createSlice({
   name: "todo",
   initialState: {
     todos: [],
+    task: 0,
     loading: true,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    setTask: (state, action) => {
+      let cont = 0;
+      action.forEach((td) => {
+        if (td.status === false) cont++;
+      });
+      state.task = cont;
+    },
+    setAddTask: (state) => {
+      state.task = state.task + 1;
+    },
+    setRemoveTask: (state) => {
+      state.task = state.task - 1;
+    },
+  },
   extraReducers: {
     //get by user---------------------------------------
     [getTodoUserThunk.pending]: (state) => {
@@ -125,3 +140,4 @@ const todoSlice = createSlice({
 });
 
 export default todoSlice.reducer;
+export const {setAddTask, setRemoveTask, setTask} = todoSlice.actions;
