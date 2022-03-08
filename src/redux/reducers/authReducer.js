@@ -1,27 +1,29 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Swal from "sweetalert2";
-import { serviceLogin, serviceRegister, serviceRevalidation } from "../../services/auth.service";
+import {
+  serviceLogin,
+  serviceRegister,
+  serviceRevalidation,
+} from "../../services/auth.service";
 
 export const startLogin = createAsyncThunk("auth/startLogin", async (body) => {
-  const resp = await serviceLogin(body);
-  localStorage.setItem("token", resp.resp.data.token);
-  return resp;
+  const respLogin = await serviceLogin(body);
+  return respLogin;
 });
 
 export const startRegister = createAsyncThunk(
   "auth/startRegister",
   async (body) => {
-    const resp = await serviceRegister(body);
-    return resp;
+    const respRegister = await serviceRegister(body);
+    return respRegister;
   }
 );
 
 export const startRevalidation = createAsyncThunk(
   "auth/startRevalidation",
   async () => {
-    const resp = await serviceRevalidation();
-    localStorage.setItem("token", resp.resp.data.token);
-    return resp;
+    const respReva = await serviceRevalidation();
+    return respReva;
   }
 );
 
@@ -47,7 +49,7 @@ const authSlice = createSlice({
     error: null,
   },
   reducers: {
-   setLogout:(state) => {
+    setLogout: (state) => {
       localStorage.removeItem("token");
       state.logged = false;
       state.user = [];
@@ -57,25 +59,27 @@ const authSlice = createSlice({
         status: false,
         error: null,
       };
-   }
+    },
   },
   extraReducers: {
     //login---------------------------------------
     [startLogin.pending]: (state, action) => {
       state.loading = true;
+      state.error = null;
     },
     [startLogin.fulfilled]: (state, action) => {
+      console.log(action.payload);
       if (action.payload.error) {
         state.error = action.payload.error.msg;
         state.logged = false;
         setTimeout(() => {
           Toast.fire({
             icon: "error",
-            iconColor: "white",
-            color: "white",
-            background: "#F33950",
+            iconColor: "#B32F2D",
+            color: "#BF3938",
+            background: "#ECC8C5",
             title: "Error al logear usuario",
-            text:action.payload.error.msg
+            text: action.payload.error.msg,
           });
         }, 1000);
       } else {
@@ -83,18 +87,18 @@ const authSlice = createSlice({
         state.user = action.payload.resp.data.user;
         state.logged = true;
         state.error = null;
+        localStorage.setItem("token", action.payload.resp.data.token);
         Toast.fire({
           icon: "success",
-          iconColor: "white",
-          color: "white",
-          background: "#75D00F",
+          iconColor: "#5A7052",
+          color: "#597151",
+          background: "#DEF2D6",
           title: "Usuario Logeado",
         });
       }
       state.loading = false;
     },
     [startLogin.rejected]: (state, action) => {
-      console.log(action.payload);
       state.error = "error al iniciar sesión trata de recargar la página";
       state.logged = false;
       state.loading = false;
@@ -114,7 +118,7 @@ const authSlice = createSlice({
           color: "white",
           background: "#F33950",
           title: "Error al crear cuenta",
-          text:"Email en uso"
+          text: "Email en uso",
         });
       } else {
         state.register.error = null;
@@ -126,7 +130,7 @@ const authSlice = createSlice({
           color: "white",
           background: "#75D00F",
           title: "Usuario Registrado",
-          text:"Prueba logearte con tu nueva cuenta!"
+          text: "Prueba logearte con tu nueva cuenta!",
         });
       }
       state.loading = false;
@@ -136,24 +140,24 @@ const authSlice = createSlice({
       state.logged = false;
       state.loading = false;
     },
-     //Revalidation---------------------------------------
-     [startRevalidation.pending]: (state, action) => {
+    //Revalidation---------------------------------------
+    [startRevalidation.pending]: (state, action) => {
       state.loading = true;
     },
     [startRevalidation.fulfilled]: (state, action) => {
       if (action.payload.error) {
-        console.log(action.payload);
         state.logged = false;
       } else {
         state.token = action.payload.resp.data.token;
         state.user = action.payload.resp.data.user;
         state.logged = true;
         state.error = null;
+        localStorage.setItem("token", action.payload.resp.data.token);
         Toast.fire({
           icon: "success",
-          iconColor: "white",
-          color: "white",
-          background: "#75D00F",
+          iconColor: "#5A7052",
+          color: "#597151",
+          background: "#DEF2D6",
           title: "Usuario Logeado",
         });
       }
@@ -168,4 +172,4 @@ const authSlice = createSlice({
 });
 
 export default authSlice.reducer;
-export const {setLogout} = authSlice.actions;
+export const { setLogout } = authSlice.actions;
