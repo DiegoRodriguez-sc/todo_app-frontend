@@ -68,14 +68,16 @@ const authSlice = createSlice({
       if (action.payload.error) {
         state.error = action.payload.error.msg;
         state.logged = false;
-        Toast.fire({
-          icon: "error",
-          iconColor: "white",
-          color: "white",
-          background: "#F33950",
-          title: "Error al logear usuario",
-          text:action.payload.error.msg
-        });
+        setTimeout(() => {
+          Toast.fire({
+            icon: "error",
+            iconColor: "white",
+            color: "white",
+            background: "#F33950",
+            title: "Error al logear usuario",
+            text:action.payload.error.msg
+          });
+        }, 1000);
       } else {
         state.token = action.payload.resp.data.token;
         state.user = action.payload.resp.data.user;
@@ -92,6 +94,7 @@ const authSlice = createSlice({
       state.loading = false;
     },
     [startLogin.rejected]: (state, action) => {
+      console.log(action.payload);
       state.error = "error al iniciar sesión trata de recargar la página";
       state.logged = false;
       state.loading = false;

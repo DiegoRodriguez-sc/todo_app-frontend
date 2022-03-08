@@ -12,6 +12,7 @@ import ProtectAuth from "./ProtectAuth";
 import { useDispatch, useSelector } from "react-redux";
 import { startRevalidation } from "../redux/reducers/authReducer";
 import { getTodoUserThunk, setTask } from "../redux/reducers/todoReducer";
+import LoadingScreen from "../components/loader/LoadingScreen";
 
 const AppRouter = () => {
   const location = useLocation();
@@ -37,7 +38,7 @@ const AppRouter = () => {
   }, [dispatch, todos]);
 
   if(loading){
-    return <div>cargando....</div>
+    return <LoadingScreen />
   }
 
   return (
