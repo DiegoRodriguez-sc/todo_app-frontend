@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 
 const dayArray = [
@@ -26,8 +27,18 @@ const monthArray = [
   "Diciembre",
 ];
 
+const taskMotion = {
+  init: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+};
+
 const HeaderDate = () => {
   const { user } = useSelector((state) => state.auth);
+  const { task } = useSelector((state) => state.todo);
   const userName = user.name.split(" ")[0];
 
   const mydate = new Date();
@@ -56,7 +67,11 @@ const HeaderDate = () => {
         {`Hoy es ${day} ${date} de ${month}`}
       </h3>
       <p className="font-medium">
-        Tienes <span>{"0"}</span> tareas pendientes
+        Tienes{" "}
+        <motion.span variants={taskMotion} initial="init" animate="animate">
+          {task}
+        </motion.span>{" "}
+        tareas pendientes
       </p>
     </div>
   );

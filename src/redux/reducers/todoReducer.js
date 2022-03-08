@@ -49,7 +49,7 @@ const todoSlice = createSlice({
   reducers: {
     setTask: (state, action) => {
       let cont = 0;
-      action.forEach((td) => {
+      action.payload.forEach((td) => {
         if (td.status === false) cont++;
       });
       state.task = cont;

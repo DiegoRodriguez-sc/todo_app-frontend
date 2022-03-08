@@ -9,6 +9,7 @@ import { arrCat } from "../../helper/categories";
 import {
   deleteTodoThunk,
   putTodoThunk,
+  setRemoveTask,
 } from "../../redux/reducers/todoReducer";
 
 // animate example init
@@ -48,6 +49,7 @@ const Dashboard = () => {
   //complete todo
   const handleCompleted = (id) => {
     dispatch(putTodoThunk({ status: true, id }));
+    dispatch(setRemoveTask());
   };
   //delete todo
   const handleDelete = (id) => {
@@ -76,6 +78,7 @@ const Dashboard = () => {
                         checked={td.status}
                         onChange={() => handleCompleted(td.uid)}
                         id={td.uid}
+                        disabled={td.status}
                       />
                       <motion.p
                         style={

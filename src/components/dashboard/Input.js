@@ -3,7 +3,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import DropCategories from "./DropCategories";
 import { useDispatch } from "react-redux";
-import { postTodoThunk } from "../../redux/reducers/todoReducer";
+import { postTodoThunk, setAddTask } from "../../redux/reducers/todoReducer";
 
 const todoSchema = Yup.object().shape({
   todo: Yup.string().required("Ecribe tus tareas por hacer!"),
@@ -18,7 +18,6 @@ const Input = () => {
       if(cate.name !== "Default"){
         setErrorCate(false);
       }
-      console.log(cate);
    }, [cate]);
 
   return (
@@ -30,8 +29,8 @@ const Input = () => {
           setErrorCate(true);
         }else{
           const newValues = {...values, category:cate.name}
-
           dispatch(postTodoThunk(newValues));
+          dispatch(setAddTask());
           resetForm();
         }
       }}

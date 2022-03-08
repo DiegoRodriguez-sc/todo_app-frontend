@@ -11,12 +11,14 @@ import ConfigUser from "../components/configUser/ConfigUser";
 import ProtectAuth from "./ProtectAuth";
 import { useDispatch, useSelector } from "react-redux";
 import { startRevalidation } from "../redux/reducers/authReducer";
-import { getTodoUserThunk } from "../redux/reducers/todoReducer";
+import { getTodoUserThunk, setTask } from "../redux/reducers/todoReducer";
 
 const AppRouter = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const {loading, user} = useSelector( state => state.auth );
+  const {todos} = useSelector( state => state.todo );
+  
 
   useEffect(() => {
     dispatch(startRevalidation());
@@ -27,6 +29,12 @@ const AppRouter = () => {
       dispatch(getTodoUserThunk(user.uid));
     }
   }, [dispatch,user]);
+
+  useEffect(() => {
+    if(todos.length > 0){
+      dispatch(setTask(todos));
+    }
+  }, [dispatch, todos]);
 
   if(loading){
     return <div>cargando....</div>
