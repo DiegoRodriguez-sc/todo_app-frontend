@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Dropdown from "./DropDown";
 
 const NavBar = () => {
+
   const { logged } = useSelector((state) => state.auth);
   return (
     <nav className="relative bg-[#fffffe] text-[#0d0d0d]">
@@ -27,7 +28,7 @@ const NavBar = () => {
                 </Link>
                 <Link
                   to="/register"
-                  className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-[#0d0d0d] bg-[#ff8e3c]"
+                  className="hidden  ml-8 whitespace-nowrap sm:inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-[#0d0d0d] bg-[#ff8e3c]"
                 >
                   Registrarse
                 </Link>
