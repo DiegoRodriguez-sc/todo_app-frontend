@@ -30,6 +30,7 @@ const Input = () => {
           setErrorCate(true);
         }else{
           const newValues = {...values, category:cate.name}
+
           dispatch(postTodoThunk(newValues));
           resetForm();
         }
@@ -40,7 +41,6 @@ const Input = () => {
         errors,
         touched,
         handleChange,
-        handleBlur,
         handleSubmit,
       }) => (
         <form onSubmit={handleSubmit}>
@@ -51,7 +51,6 @@ const Input = () => {
               autoComplete="off"
               onChange={handleChange}
               placeholder={`para crear una tarea presione ⤶`}
-              onBlur={handleBlur}
               value={values.todo}
               className="flex-2 w-full text-lg px-4  mt-1 text-[#0d0d0d] bg-[#eff0f3]  focus:border-none focus:outline-none"
             />
