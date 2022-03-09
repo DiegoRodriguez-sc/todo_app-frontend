@@ -2,7 +2,7 @@ import React from 'react';
 
 const ConfigUser = () => {
  return (
-  <div>
+  <div className='min-h-screen'>
     config user
   </div>
  );

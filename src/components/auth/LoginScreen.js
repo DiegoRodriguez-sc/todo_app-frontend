@@ -19,7 +19,7 @@ const LoginScreen = () => {
   const dispatch = useDispatch();
   return (
     <AnimatePage>
-      <div className="w-full mt-10 max-w-sm p-6 m-auto text-[#0d0d0d] bg-[#fffffe] rounded-md">
+      <div className="w-full min-h-screen mt-10 max-w-sm p-6 m-auto text-[#0d0d0d] bg-[#fffffe] rounded-md">
         <h1 className="text-3xl font-semibold text-center">Iniciar Sesión</h1>
         <Formik
           initialValues={{ email: "", password: "" }}

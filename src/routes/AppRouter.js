@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { startRevalidation } from "../redux/reducers/authReducer";
 import { getTodoUserThunk, setTask } from "../redux/reducers/todoReducer";
 import LoadingScreen from "../components/loader/LoadingScreen";
+import Footer from "../components/footer/Footer";
 
 const AppRouter = () => {
   const location = useLocation();
@@ -55,6 +56,7 @@ const AppRouter = () => {
           <Route path="/dashboard/:id" element={ <ProtectPrivate> <ConfigUser /> </ProtectPrivate>} />
         </Routes>
       </AnimatePresence>
+      <Footer />
     </div>
   );
 };

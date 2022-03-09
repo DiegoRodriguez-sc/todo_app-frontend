@@ -56,7 +56,7 @@ const Dashboard = () => {
     dispatch(deleteTodoThunk(id));
   };
   return (
-    <div className="container px-1 py-16 mx-auto text-center">
+    <div className="container min-h-screen px-1 py-16 mx-auto text-center">
       <HeaderDate />
       <div className="text-[#0d0d0d] bg-[#fffffe]">
         <div className="container px-6 py-8 mx-auto">
