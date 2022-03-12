@@ -1,17 +1,18 @@
 import React, { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { AnimatePresence } from "framer-motion";
+
+import { startRevalidation } from "../redux/reducers/authReducer";
+import { getTodoUserThunk, setTask } from "../redux/reducers/todoReducer";
 import NavBar from "../components/navBar/NavBar";
 import LandingScreen from "../components/landingPage/LandingScreen";
-import LoginScreen from "../components/auth/LoginScreen";
 import RegisterScreen from "../components/auth/RegisterScreen";
+import LoginScreen from "../pages/LoginScreen";
 import Dashboard from "../components/dashboard/Dashboard";
 import ProtectPrivate from "./ProtectPrivate";
 import ConfigUser from "../components/configUser/ConfigUser";
 import ProtectAuth from "./ProtectAuth";
-import { useDispatch, useSelector } from "react-redux";
-import { startRevalidation } from "../redux/reducers/authReducer";
-import { getTodoUserThunk, setTask } from "../redux/reducers/todoReducer";
 import LoadingScreen from "../components/loader/LoadingScreen";
 import Footer from "../components/footer/Footer";
 
