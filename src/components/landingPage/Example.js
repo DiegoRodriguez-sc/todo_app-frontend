@@ -73,7 +73,7 @@ const Example = () => {
   };
 
   return (
-    <div className="text-[#0d0d0d] bg-[#fffffe]">
+    <div className="bg-[#fffffe] dark:bg-[#22242C] text-[#0d0d0d] dark:text-[#F0F1F7]">
       <div className="container px-6 py-8 mx-auto">
         <div className="mt-6 space-y-8 xl:mt-12">
           <AnimatePresence>
@@ -84,7 +84,7 @@ const Example = () => {
                 animate="fin"
                 exit="exit"
                 key={taskk.id}
-                className={`flex justify-between items-center overflow-x-auto  max-w-2xl w-full px-4 py-2 mx-auto border rounded-xl border-gray-200 bg-[#eff0f3]`}
+                className={`flex justify-between items-center overflow-x-auto  max-w-2xl w-full px-4 py-2 mx-auto border rounded-xl border-gray-200 dark:border-gray-800 bg-[#eff0f3] dark:bg-[#20303b]`}
               >
                 <div className="flex items-center justify-center">
                   <CheckBox

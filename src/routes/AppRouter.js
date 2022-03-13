@@ -6,7 +6,6 @@ import { AnimatePresence } from "framer-motion";
 import { startRevalidation } from "../redux/reducers/authReducer";
 import { getTodoUserThunk, setTask } from "../redux/reducers/todoReducer";
 import NavBar from "../components/navBar/NavBar";
-import LandingScreen from "../components/landingPage/LandingScreen";
 import RegisterScreen from "../components/auth/RegisterScreen";
 import LoginScreen from "../pages/LoginScreen";
 import Dashboard from "../components/dashboard/Dashboard";
@@ -15,6 +14,7 @@ import ConfigUser from "../components/configUser/ConfigUser";
 import ProtectAuth from "./ProtectAuth";
 import LoadingScreen from "../components/loader/LoadingScreen";
 import Footer from "../components/footer/Footer";
+import LandingScreen from "../pages/LandingScreen";
 
 const AppRouter = () => {
   const location = useLocation();
