@@ -8,13 +8,13 @@ import { getTodoUserThunk, setTask } from "../redux/reducers/todoReducer";
 import NavBar from "../components/navBar/NavBar";
 import LoginScreen from "../pages/LoginScreen";
 import RegisterScreen from "../pages/RegisterScreen";
-import Dashboard from "../components/dashboard/Dashboard";
 import ProtectPrivate from "./ProtectPrivate";
 import ConfigUser from "../components/configUser/ConfigUser";
 import ProtectAuth from "./ProtectAuth";
 import LoadingScreen from "../components/loader/LoadingScreen";
 import Footer from "../components/footer/Footer";
 import LandingScreen from "../pages/LandingScreen";
+import DashboardScreen from "../pages/dashboardScreen";
 
 const AppRouter = () => {
   const location = useLocation();
@@ -53,7 +53,7 @@ const AppRouter = () => {
           <Route path="/login" element={<ProtectAuth> <LoginScreen /> </ProtectAuth> } />
           <Route path="/register" element={<ProtectAuth> <RegisterScreen /> </ProtectAuth>} />
           {/* private */}
-          <Route path="/dashboard" element={ <ProtectPrivate> <Dashboard /> </ProtectPrivate>} />
+          <Route path="/dashboard" element={ <ProtectPrivate> <DashboardScreen /> </ProtectPrivate>} />
           <Route path="/dashboard/:id" element={ <ProtectPrivate> <ConfigUser /> </ProtectPrivate>} />
         </Routes>
       </AnimatePresence>

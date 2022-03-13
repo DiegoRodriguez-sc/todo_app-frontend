@@ -107,6 +107,7 @@ const Example = () => {
                   whileHover={{
                     color: "#FF8E3C",
                   }}
+                  className="text-[#0d0d0d] dark:text-[#F0F1F7]"
                 >
                   {taskk.categoria}
                 </motion.div>

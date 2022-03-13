@@ -56,9 +56,9 @@ const Dashboard = () => {
     dispatch(deleteTodoThunk(id));
   };
   return (
-    <div className="container min-h-screen px-1 py-16 mx-auto text-center">
+    <div className="container min-h-screen px-1 py-16 mx-auto text-center text-[#0d0d0d] dark:text-[#F0F1F7]">
       <HeaderDate />
-      <div className="text-[#0d0d0d] bg-[#fffffe]">
+      <div className="">
         <div className="container px-6 py-8 mx-auto">
           <Input />
           <div className="mt-6 space-y-8 xl:mt-12">
@@ -71,7 +71,7 @@ const Dashboard = () => {
                     animate="fin"
                     exit="exit"
                     key={td.uid}
-                    className={`flex justify-between items-center overflow-x-auto  max-w-2xl w-full px-4 py-2 mx-auto border rounded-xl border-gray-200 bg-[#eff0f3]`}
+                    className={`flex justify-between items-center overflow-x-auto  max-w-2xl w-full px-4 py-2 mx-auto border rounded-xl border-gray-200 dark:border-gray-800 bg-[#eff0f3] dark:bg-[#20303b]`}
                   >
                     <div className="flex items-center justify-center">
                       <CheckBox

@@ -43,7 +43,7 @@ const Input = () => {
         handleSubmit,
       }) => (
         <form onSubmit={handleSubmit}>
-          <div className="flex justify-between items-center max-w-2xl w-full px-4 py-2 mx-auto border rounded-xl border-gray-200 bg-[#eff0f3]">
+          <div className="flex justify-between items-center max-w-2xl w-full px-4 py-2 mx-auto border rounded-xl border-gray-200 bg-[#eff0f3]  dark:bg-[#20303b] dark:border-gray-800 shadow ">
             <input
               type="text"
               name="todo"
@@ -51,7 +51,7 @@ const Input = () => {
               onChange={handleChange}
               placeholder={`Enter ⤶ para crear`}
               value={values.todo}
-              className="flex-2 w-full text-lg px-4  mt-1 text-[#0d0d0d] bg-[#eff0f3]  focus:border-none focus:outline-none"
+              className="flex-2 w-full text-lg px-4  bg-[#eff0f3] dark:bg-[#20303b] mt-1  focus:border-none focus:outline-none"
             />
             <DropCategories setCate={setCate} />
           </div>
