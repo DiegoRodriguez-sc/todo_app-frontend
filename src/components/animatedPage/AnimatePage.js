@@ -15,6 +15,7 @@ const AnimatePage = ({ children }) => {
       animate="animate"
       exit="exit"
       transition={{ duration: .5 }}
+      className="bg-[#fffffe] dark:bg-[#22242C] text-[#0d0d0d] dark:text-[#F0F1F7]"
     >
       {children}
     </motion.div>

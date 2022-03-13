@@ -19,7 +19,7 @@ const Login = () => {
   const { loading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   return (
-    <div className="w-full min-h-screen mt-10 max-w-sm p-6 m-auto text-[#0d0d0d] bg-[#fffffe] rounded-md">
+    <div className="w-full min-h-screen  pt-10 max-w-sm p-6 m-auto  rounded-md">
       <h1 className="text-3xl font-semibold text-center">Iniciar Sesión</h1>
       <Formik
         initialValues={{ email: "", password: "" }}
@@ -42,7 +42,7 @@ const Login = () => {
             <div>
               <label
                 htmlFor="username"
-                className="block text-lg text-[#0d0d0d] "
+                className="block text-lg text-[#0d0d0d] dark:text-[#F0F1F7] "
               >
                 Correo electrónico
               </label>
@@ -65,7 +65,7 @@ const Login = () => {
               <div className="flex items-center justify-between">
                 <label
                   htmlFor="password"
-                  className="block text-lg text-[#0d0d0d]"
+                  className="block text-lg text-[#0d0d0d] dark:text-[#F0F1F7]"
                 >
                   Contraseña
                 </label>
