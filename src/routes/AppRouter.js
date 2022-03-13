@@ -6,8 +6,8 @@ import { AnimatePresence } from "framer-motion";
 import { startRevalidation } from "../redux/reducers/authReducer";
 import { getTodoUserThunk, setTask } from "../redux/reducers/todoReducer";
 import NavBar from "../components/navBar/NavBar";
-import RegisterScreen from "../components/auth/RegisterScreen";
 import LoginScreen from "../pages/LoginScreen";
+import RegisterScreen from "../pages/RegisterScreen";
 import Dashboard from "../components/dashboard/Dashboard";
 import ProtectPrivate from "./ProtectPrivate";
 import ConfigUser from "../components/configUser/ConfigUser";
@@ -44,7 +44,7 @@ const AppRouter = () => {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[#fffffe] dark:bg-[#22242C]">
       <NavBar />
       <AnimatePresence exitBeforeEnter>
         <Routes key={location.pathname} location={location}>

@@ -14,7 +14,7 @@ const Toggle = () => {
     }
   };
 
-  return <div className="cursor-pointer mx-2 text-xl" onClick={handleChangeTheme}>{theme ? <Sun /> : <Moon />}</div>;
+  return <div className="cursor-pointer mx-2 text-xl" onClick={handleChangeTheme}>{!theme ? <Sun /> : <Moon />}</div>;
 };
 
 export default Toggle;
