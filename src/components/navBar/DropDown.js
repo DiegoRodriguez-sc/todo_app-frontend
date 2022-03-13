@@ -8,7 +8,7 @@ import { setLogout } from '../../redux/reducers/authReducer';
 
 const chevronIcon = (
  <svg
-   className="text-gray-900"
+   className="text-gray-900 dark:text-gray-100"
    fill="currentColor"
    xmlns="http://www.w3.org/2000/svg"
    width="24"
@@ -60,14 +60,14 @@ const Dropdown = () => {
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10 block mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg w-36 ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute right-0 z-10 block mt-2 origin-top-right bg-[#fffffe] dark:bg-[#20303b]  divide-y divide-gray-100 dark:divide-gray-700 rounded-md shadow-lg w-36 ring-1 ring-black ring-opacity-5 focus:outline-none">
           <Menu.Item>
             {({ active }) => (
               <button
                 onClick={handleTodo}
                 className={`${
-                  active ? 'bg-[#ff8e3c]' : ''
-                } group flex gap-1 rounded-md items-center w-full px-4 py-2 text-sm text-gray-900 font-semibold`}
+                  active ? 'bg-[#ff8e3c] dark:text-gray-900' : ''
+                } group flex gap-1 rounded-md items-center w-full px-4 py-2 text-sm dark:text-[#F0F1F7] text-gray-900 font-semibold`}
               >
                 <IoList />
                 todo list
@@ -79,8 +79,8 @@ const Dropdown = () => {
               <button
                 onClick={handleConfig}
                 className={`${
-                  active ? 'bg-[#ff8e3c]' : ''
-                } group flex gap-1 rounded-md items-center w-full px-4 py-2 text-sm text-gray-900 font-semibold`}
+                  active ? 'bg-[#ff8e3c] dark:text-gray-900' : ''
+                } group flex gap-1 rounded-md items-center w-full px-4 py-2 text-sm dark:text-[#F0F1F7] text-gray-900 font-semibold`}
               >
                 <IoSettings />
                 Configuración
@@ -92,8 +92,8 @@ const Dropdown = () => {
               <button
                 onClick={handdleLogout}
                 className={`${
-                  active ? 'bg-[#ff8e3c]' : ''
-                } group flex gap-1 rounded-md items-center w-full px-4 py-2 text-sm text-gray-900 font-semibold`}
+                  active ? 'bg-[#ff8e3c] dark:text-gray-900' : ''
+                } group flex gap-1 rounded-md items-center w-full px-4 py-2 text-sm text-gray-900 dark:text-[#F0F1F7] font-semibold`}
               >
                 <IoLogOut />
                 Logout
