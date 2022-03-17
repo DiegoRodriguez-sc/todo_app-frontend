@@ -129,6 +129,11 @@ const todoSlice = createSlice({
           (td) => td.uid !== action.payload.resp.todo.uid
         );
         state.error = null;
+        let cont = 0;
+        state.todos.forEach((td) => {
+          if (td.status === false) cont++;
+        });
+        state.task = cont;
       }
       state.loading = false;
     },
@@ -140,4 +145,4 @@ const todoSlice = createSlice({
 });
 
 export default todoSlice.reducer;
-export const {setAddTask, setRemoveTask, setTask} = todoSlice.actions;
+export const { setAddTask, setRemoveTask, setTask } = todoSlice.actions;

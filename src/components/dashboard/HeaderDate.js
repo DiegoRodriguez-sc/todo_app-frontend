@@ -69,7 +69,7 @@ const HeaderDate = () => {
       </h3>
       <p className="font-medium">
         Tienes{" "}
-        <motion.span className="night" variants={taskMotion} initial="init" animate="animate">
+        <motion.span className="afternon" variants={taskMotion} initial="init" animate="animate">
           {task}{" "}
         </motion.span>
         tareas pendientes
