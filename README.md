@@ -16,7 +16,7 @@ Para probar puedes usar `email:test@gmail.com, password:123456`
 
 ## Live demo 🔴
 
-Sitio Web - [TODO app](https://vercel.com/diegorodriguez-sc/todo-app-dr).
+Sitio Web - [TODO app](https://todo-app-dr.vercel.app/).
 
 ![](./src/assets/todo-app.PNG)
 ![](./src/assets/todo-app-1.PNG)
