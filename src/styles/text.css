@@ -1,0 +1,39 @@
+.landing {
+  background: #f4c640;
+  background: -webkit-linear-gradient(to left, #f4c640 0%, #f9665d 100%);
+  background: -moz-linear-gradient(to left, #f4c640 0%, #f9665d 100%);
+  background: linear-gradient(to left, #f4c640 0%, #f9665d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.morning {
+  background: #7d26c7;
+  background: -webkit-linear-gradient(to right, #7d26c7 0%, #f90183 100%);
+  background: -moz-linear-gradient(to right, #7d26c7 0%, #f90183 100%);
+  background: linear-gradient(to right, #7d26c7 0%, #f90183 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.afternon {
+  background: #f4c640;
+  background: -webkit-linear-gradient(to left, #f4c640 0%, #f9665d 100%);
+  background: -moz-linear-gradient(to left, #f4c640 0%, #f9665d 100%);
+  background: linear-gradient(to left, #f4c640 0%, #f9665d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.night {
+  background: #00dcd8;
+  background: -webkit-linear-gradient(to left, #00dcd8 0%, #007ff0 100%);
+  background: -moz-linear-gradient(to left, #00dcd8 0%, #007ff0 100%);
+  background: linear-gradient(to left, #00dcd8 0%, #007ff0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

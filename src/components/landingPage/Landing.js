@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Example from "./Example";
+import "../../styles/text.css";
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -10,11 +11,11 @@ const Landing = () => {
   return (
     <div className="container px-6 py-16 mx-auto text-center">
       <div className="max-w-lg mx-auto">
-        <h1 className="text-3xl min-w-full mx-auto  font-extrabold md:text-4xl lg:text-5xl">
+        <h1 className="landing text-3xl min-w-full mx-auto  font-extrabold md:text-4xl lg:text-5xl">
           <span className="block whitespace-nowrap">Mantente Organizado</span>
           <span className="block">Mantente Creativo</span>
         </h1>
-        <p className="mt-6 text-gray-800 dark:text-gray-300">
+        <p className="mt-6 text-gray-800 font-medium dark:text-gray-300">
           Captura tus ideas y haz algo creativo todos los días
         </p>
         <button

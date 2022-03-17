@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
+import "../../styles/text.css";
 
 const dayArray = [
   "Domingo,",
@@ -57,10 +58,10 @@ const HeaderDate = () => {
 
   return (
     <div>
-      <h2 className="text-3xl min-w-full mx-auto px-1  font-bold md:text-4xl lg:text-5xl">
+      <h2 className="afternon text-3xl min-w-full mx-auto px-1  font-bold md:text-4xl lg:text-5xl">
         {saludo}
       </h2>
-      <h1 className="my-2 text-4xl mb-3 min-w-full mx-auto px-1  font-bold md:text-5xl lg:text-6xl">
+      <h1 className="afternon my-2 text-4xl mb-3 min-w-full mx-auto px-1  font-bold md:text-5xl lg:text-6xl">
         {userName}
       </h1>
       <h3 className=" my-1 text-1xl font-bold md:text-2xl lg:text-3xl uppercase ">
@@ -68,9 +69,9 @@ const HeaderDate = () => {
       </h3>
       <p className="font-medium">
         Tienes{" "}
-        <motion.span variants={taskMotion} initial="init" animate="animate">
-          {task}
-        </motion.span>{" "}
+        <motion.span className="night" variants={taskMotion} initial="init" animate="animate">
+          {task}{" "}
+        </motion.span>
         tareas pendientes
       </p>
     </div>
